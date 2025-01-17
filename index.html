@@ -5,241 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huinder</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #ffd8e8;
-        }
-
-        header {
-            background-color: #ff85a9;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            width: 100%;
-            padding: 0 1rem;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        header img {
-            height: 8rem;
-            width: auto;
-            margin-right: 1.5rem;
-        }
-
-        header .title-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            color: white;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        header p {
-            font-size: 1.5rem;
-            color: #ffccdf;
-            margin: 0.5rem 0 0;
-        }
-
-        #blinkButton { 
-            background-color: gold; 
-            color: #fff;
-            border: none; 
-            padding: 1rem 2rem;
-            height: calc(100% - 1rem);
-            width: auto;
-            margin-right: 1rem;
-            cursor: pointer; 
-            animation: blink 1s infinite; 
-            font-size: 1.5rem;
-        } 
-        
-        @keyframes blink { 
-            0%, 100% { opacity: 1; 
-            } 
-            50% { 
-                opacity: 0; 
-            } 
-        } 
-
-        .form-container {
-             display: none; 
-             position: fixed; 
-             top: 50%; 
-             left: 50%; 
-             transform: translate(-50%, -50%); 
-             background-color: #b625b6;
-             padding: 2rem; 
-             border: 1px solid #ccc; 
-             border-radius: 0.8rem;
-             z-index: 1000; 
-             width: 90vw;
-             max-width: 25rem;
-        } 
-
-        #overlay {
-             display: none; 
-             position: fixed; 
-             top: 0; left: 0; 
-             width: 100%; 
-             height: 100%; 
-             background-color: rgba(0, 0, 0, 0.05);
-             z-index: 999; 
-        }
-
-        .form {
-             display: flex; 
-             flex-direction: column; 
-             align-items: center; 
-            }
-
-        .form__label, .form__input, .form__fieldset { 
-            margin-bottom: 1.3rem;
-            color: #660030;
-        }
-
-        .form__label { 
-            font-weight: bold; 
-        }
-
-        .form__input { 
-            padding: 0.5rem; 
-            border-radius: 0.8rem; 
-            border: 1px solid #ddd; 
-            font-family: 'Poppins', sans-serif; 
-            width: 100%; 
-            max-width: 25rem;
-            margin-bottom: 1rem;
-        }
-
-        .form__input:focus { 
-            outline: 2px solid gold;
-        }
-
-        .form__button { 
-            background-color: #ff85a9; 
-            color: white; 
-            cursor: pointer;
-            padding: 0.8rem 1.3rem;
-            border: none; 
-            border-radius: 0.8rem; 
-            font-family: 'Poppins', sans-serif; 
-            margin-top: 1.3rem; 
-        }
-
-        .form__fieldset { 
-            flex: 1;
-            margin: 0.8rem;
-            padding: 1rem;
-            background-color: #fab1cc;
-            border-radius: 0.8rem; 
-            border: 1px solid #ddd; 
-        }
-
-        .form__fieldset-container {
-            display: flex; 
-            justify-content: space-between; 
-            width: 100%; 
-            max-width: 25rem;
-        }
-
-        .container {
-            padding: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 60rem;
-            margin: 0 auto;
-        }
-
-        .card {
-            background-color: #fab1cc;
-            border-radius: 0.8rem;
-            margin: 0.8rem;
-            width: calc(25% - 1.6rem);
-            padding: 1rem;
-            text-align: center;
-            position: relative;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .card__image {
-            width: 100%;
-            height: 13rem;
-            object-fit: cover;
-            object-position: top;
-            border-radius: 0.8rem;
-            filter: blur(4px);
-            transition: filter 0.3s, object-position 0.3s;
-        }
-
-        .card:hover .card__image {
-            filter: blur(0);
-            object-position: center;
-        }
-
-        .card__title {
-            margin-top: 0.8rem;
-            color: #b625b6;
-        }
-
-        .status-container {
-            position: absolute;
-            top: 0.8rem;
-            right: 0.8rem;
-            display: flex;
-            align-items: center;
-            z-index: 1;
-        }
-
-        .status {
-            width: 0.8rem;
-            height: 0.8rem;
-            border-radius: 50%;
-            margin-left: 0.5rem;
-            background-color: red;
-            box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.3);
-        }
-
-        .status--online {
-            background-color: green;
-        }
-
-        .status-label {
-            color: white;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        @media (max-width: 40rem) {
-            .card {
-                width: 100%;
-                margin: 0.8rem 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <img src="photos/reshot-icon-flickr-PTXY7M2H6V.svg" alt="Logo">
+        <img src="media/img/logo/reshot-icon-flickr-PTXY7M2H6V.svg" alt="Logo">
         <div class="title-container">
             <h1>Huinder</h1>
             <p>free sex</p>
@@ -252,7 +22,7 @@
                 <div class="status-label">offline</div>
                 <div class="status"></div>
             </div>
-            <img src="photos/pexels-eliasdecarvalho-1375849.jpg" alt="Image" class="card__image">
+            <img src="media/img/girls/pexels-eliasdecarvalho-1375849.jpg" alt="Image" class="card__image">
             <h2 class="card__title">Анна</h2>
         </div>
         <div class="card">
@@ -260,7 +30,7 @@
                 <div class="status-label">online</div>
                 <div class="status status--online"></div>
             </div>
-            <img src="photos/pexels-enginakyurt-1642228.jpg" alt="Image" class="card__image">
+            <img src="media/img/girls/pexels-enginakyurt-1642228.jpg" alt="Image" class="card__image">
             <h2 class="card__title">Екатерина</h2>
         </div>
         <div class="card">
@@ -268,7 +38,7 @@
                 <div class="status-label">offline</div>
                 <div class="status"></div>
             </div>
-            <img src="photos/pexels-kha-ruxury-287153-919613.jpg" alt="Image" class="card__image">
+            <img src="media/img/girls/pexels-kha-ruxury-287153-919613.jpg" alt="Image" class="card__image">
             <h2 class="card__title">Мария</h2>
         </div>
         <div class="card">
@@ -276,7 +46,7 @@
                 <div class="status-label">online</div>
                 <div class="status status--online"></div>
             </div>
-            <img src="photos/pexels-marcelodias-2010877.jpg" alt="Image" class="card__image">
+            <img src="media/img/girls/pexels-marcelodias-2010877.jpg" alt="Image" class="card__image">
             <h2 class="card__title">Ольга</h2>
         </div>
         <div class="card">
@@ -284,7 +54,7 @@
                 <div class="status-label">offline</div>
                 <div class="status"></div>
             </div>
-            <img src="photos/pexels-olly-733872.jpg" alt="Image" class="card__image">
+            <img src="media/img/girls/pexels-olly-733872.jpg" alt="Image" class="card__image">
             <h2 class="card__title">Юлия</h2>
         </div>
         <div class="card">
@@ -292,7 +62,7 @@
                 <div class="status-label">online</div>
                 <div class="status status--online"></div>
             </div>
-            <img src="photos/pexels-steinportraits-1898558.jpg" alt="Image" class="card__image">
+            <img src="media/img/girls/pexels-steinportraits-1898558.jpg" alt="Image" class="card__image">
             <h2 class="card__title">Елена</h2>
         </div>
         <div class="card">
@@ -300,7 +70,7 @@
                 <div class="status-label">offline</div>
                 <div class="status"></div>
             </div>
-            <img src="photos/pexels-tomaz-barcellos-999425-1987301.jpg" alt="Image" class="card__image">
+            <img src="media/img/girls/pexels-tomaz-barcellos-999425-1987301.jpg" alt="Image" class="card__image">
             <h2 class="card__title">Наталья</h2>
         </div>
         <div class="card">
@@ -308,7 +78,7 @@
                 <div class="status-label">online</div>
                 <div class="status status--online"></div>
             </div>
-            <img src="photos/pexels-yuliya-shabliy-126574-388517.jpg" alt="Image" class="card__image">
+            <img src="media/img/girls/pexels-yuliya-shabliy-126574-388517.jpg" alt="Image" class="card__image">
             <h2 class="card__title">Виктория</h2>
         </div>
     </div>
@@ -345,39 +115,6 @@
         </form>
     </div>
     
-    <script>
-        document.getElementById('blinkButton').addEventListener('click', function() {
-            document.getElementById('formContainer').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        });
-
-        document.getElementById('overlay').addEventListener('click', function() {
-            document.getElementById('formContainer').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        });
-
-        document.getElementById('personData').addEventListener('submit', function(event) {
-            event.preventDefault();
-            window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
-        }
-    )
-
-        function changeStatusForCard(status, label) {
-            const isOnline = Math.random() > 0.5;
-            status.classList.toggle('status--online', isOnline);
-            label.textContent = isOnline ? 'online' : 'offline';
-        }
-    
-        document.querySelectorAll('.card').forEach(card => {
-            const status = card.querySelector('.status');
-            const label = card.querySelector('.status-label');
-
-            setInterval(() => {
-                changeStatusForCard(status, label);
-            }, Math.floor(Math.random() * (10000 - 4000 + 1)) + 4000);
-        });
-
-
-    </script>
+<script src="js/script.js"></script>
 </body>
 </html>
